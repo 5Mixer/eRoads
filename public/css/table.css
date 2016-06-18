@@ -1,0 +1,59 @@
+.logbook {
+	max-width:100%;
+	height:100%;
+	padding: 20px;
+}
+
+tr:first-child td {
+    vertical-align: top;
+	border-bottom: 3px #8ba373 solid;
+}
+
+
+table
+{
+	table-layout:fixed;
+	margin-bottom: 20px;
+
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+	border-collapse: collapse;
+
+}
+
+thead
+{
+	display: block;
+	width: 100%;
+	overflow: auto;
+}
+
+thead, tbody {
+
+}
+
+tbody
+{
+	display: block;
+	width: 100%;
+	background: #b7d698;
+	overflow: auto;
+
+	webkit-box-shadow: 0px 0px 16px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 16px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 16px 1px rgba(0,0,0,0.75);
+}
+
+th,td
+{
+	padding: .1em .3em;
+	text-align: left;
+	vertical-align: top;
+	border-left: 1px solid #a9c78b;
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) {
+	background: #c5e6a4;
+}

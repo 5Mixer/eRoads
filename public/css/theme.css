@@ -1,0 +1,53 @@
+.activate {
+
+	background: #649173; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #649173 , #DBD5A4); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #649173 , #DBD5A4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.pure {
+
+	background: #b2e2a9; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #b2e2a9 , #e69ca9); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #b2e2a9 , #e69ca9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.friday {
+
+	background: #83a4d4; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #83a4d4 , #b6fbff); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #83a4d4 , #b6fbff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.autumn {
+
+	background: #DAD299; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #DAD299 , #B0DAB9); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #DAD299 , #B0DAB9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.pleasent {
+	background: #4776E6; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #4776E6 , #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #4776E6 , #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.seaweed {
+	background: #73C8A9; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #73C8A9 , #373B44); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #73C8A9 , #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.delicate {
+	background: #70e1f5; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #70e1f5 , #ffd194); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #70e1f5 , #ffd194); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+a {
+	color: inherit; /* blue colors for links too */
+	text-decoration: inherit; /* no underline */
+}
