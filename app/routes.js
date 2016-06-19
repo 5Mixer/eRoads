@@ -16,14 +16,17 @@ module.exports = function (app,passport) {
 		})
 	});
 
-	app.post('/api/trips', isLoggedIn, function(req, res){
-
-	});
 
 	//This is called generally by a signup form.
 	app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/', // redirect to the home
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
+	app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/', // redirect to the home
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
@@ -34,8 +37,7 @@ module.exports = function (app,passport) {
 	});
 
 
-
-	app.get("/log", function(req, res) {
+	app.get("/log",isLoggedIn, function(req, res) {
 		res.sendfile('./public/log.html');
 	});
 	app.get("/signup", function(req, res) {
@@ -44,14 +46,24 @@ module.exports = function (app,passport) {
 	app.get("/login", function(req, res) {
 		res.sendfile('./public/login.html');
 	});
-	app.get("/trip", function(req, res) {
+	app.get("/trip",isLoggedIn, function(req, res) {
 		res.sendfile('./public/trip.html');
+	});
+
+
+	app.get('/',function(req,res){
+		if (req.isAuthenticated()){
+			res.sendfile('./public/loggedIn.html');
+		}else{
+			res.sendfile('./public/landing.html');
+		}
 	});
 
 	//Point any unknown requests to the home page.
 	app.get('*', function(req, res) {
-		res.sendfile('./public/index.html'); // load our public/index.html file
+		res.redirect('/');
 	});
+
 
 	// route middleware to make sure a user is logged in
 	function isLoggedIn(req, res, next) {

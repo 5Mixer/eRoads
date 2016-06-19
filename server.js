@@ -33,8 +33,9 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(cookieParser() );
 
-// set the static files location /public/img will be /img for users
-app.use(express.static(__dirname + '/public'));
+// set the static files location to only release resources.
+// HTML should only be viewed through other routes.
+app.use(express.static(__dirname + '/public/resources'));
 
 app.use(flash());
 
