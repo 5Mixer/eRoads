@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html ng-app="eRoads">
+<html>
 	<head>
 		<meta charset="utf-8">
-		<title>Sign Up</title>
+		<title>eRoads</title>
 
 		<link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,500' rel='stylesheet' type='text/css'>
 		<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
@@ -11,40 +11,23 @@
 		<link rel="stylesheet" type="text/css" href="css/grids.css">
 		<link rel="stylesheet" type="text/css" href="css/body.css">
 		<link rel="stylesheet" type="text/css" href="css/theme.css">
-		<link rel="stylesheet" type="text/css" href="css/form.css">
 		<link rel="stylesheet" type="text/css" href="css/text.css">
+		<link rel="stylesheet" type="text/css" href="css/form.css">
+		<link rel="stylesheet" type="text/css" href="css/table.css">
+
+
+		<base href="/">
+
+
+
 	</head>
-	<body class="pure">
-		<div class="friday middleColumn" ng-controller="SignUpController">
+	<body ng-app="eRoads" ng-controller="MainController">
+		<!-- ANGULAR DYNAMIC CONTENT -->
+    	<div ng-view></div>
 
-			<div class="title">Sign up</div>
-			<div class="body">
-				<div class="form-group">
-		            <label>Name: </label>
-		            <input type="text" class="form-control" name="name" ng-model="user.name">
-		        </div>
-		        <div class="form-group">
-		            <label>Email: </label>
-		            <input type="text" class="form-control" name="email" ng-model="user.email">
-		        </div>
-
-		        <div class="form-group">
-		            <label>Password: </label>
-		            <input type="password" class="form-control" name="password" ng-model="user.password">
-		        </div>
-				<div class="form-group">
-		            <label>License Number: </label>
-		            <input type="number" class="form-control" name="license" ng-model="user.license">
-		        </div>
-
-				<br>
-		        <button type="submit" ng-click="submit()">Login</button>
-			</div>
-		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.js"></script>
-
 
 		<script src="js/controllers/HomeCtrl.js"></script>
 		<script src="js/controllers/LogCtrl.js"></script>

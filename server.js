@@ -35,7 +35,7 @@ app.use(cookieParser() );
 
 // set the static files location to only release resources.
 // HTML should only be viewed through other routes.
-app.use(express.static(__dirname + '/public/resources'));
+app.use(express.static(__dirname + '/public/'));
 
 app.use(flash());
 

@@ -38,17 +38,25 @@ module.exports = function (app,passport) {
 
 
 	app.get("/log",isLoggedIn, function(req, res) {
-		res.sendfile('./public/log.html');
+		res.redirect('/#/log');
 	});
-	app.get("/signup", function(req, res) {
-		res.sendfile('./public/signup.html');
+
+	app.get("/login",isLoggedIn, function(req, res) {
+		res.redirect('/#/login');
 	});
-	app.get("/login", function(req, res) {
-		res.sendfile('./public/login.html');
-	});
-	app.get("/trip",isLoggedIn, function(req, res) {
-		res.sendfile('./public/trip.html');
-	});
+
+	// app.get("/signup",isLoggedIn, function(req, res) {
+	// 	res.redirect('/#/signup');
+	// });
+	// app.get("/signup", function(req, res) {
+	// 	res.sendfile('./public/signup.html');
+	// });
+	// app.get("/login", function(req, res) {
+	// 	res.sendfile('./public/login.html');
+	// });
+	// app.get("/trip",isLoggedIn, function(req, res) {
+	// 	res.sendfile('./public/trip.html');
+	// });
 
 
 	app.get('/',function(req,res){
