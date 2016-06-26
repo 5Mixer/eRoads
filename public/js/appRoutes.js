@@ -8,7 +8,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		   controller: 'MainController'
 	   })
 
-	   // nerds page that will use the NerdController
 	   .when('/log', {
 		   templateUrl: '/log.html',
 		   controller: 'LogController'
