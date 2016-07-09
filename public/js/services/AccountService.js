@@ -9,7 +9,7 @@ angular.module('AccountService', ['ngCookies']).factory('Account', ['$state','$h
         user: currentUser,
 
         isLoggedIn : function (){
-            return currentUser.secure;
+            return $cookies.getObject('user').secure || false;
         },
         logout: function(success, error) {
             this.user = {
