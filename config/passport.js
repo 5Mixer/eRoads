@@ -23,6 +23,7 @@ module.exports = function(passport){
 
 	    },function(req, email, password, done) {
 
+			console.log("Signing up "+email)
 
 			//Passport strategy for signing up.
 
@@ -41,7 +42,8 @@ module.exports = function(passport){
 
 	            // check to see if theres already a user with that email
 	            if (user) {
-	                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+					console.log("User already exists");
+
 	            } else {
 
 	                // if there is no user with that email
@@ -58,6 +60,7 @@ module.exports = function(passport){
 	                newUser.save(function(err) {
 	                    if (err)
 	                        throw err;
+
 	                    return done(null, newUser);
 	                });
 	            }
@@ -72,6 +75,8 @@ module.exports = function(passport){
 	   passwordField : 'password',
 	   passReqToCallback : true // allows us to pass back the entire request to the callback
 	   },function(req, email, password, done) { // callback with email and password from our form
+
+		   console.log("Logging in");
 
 		   // find a user whose email is the same as the forms email
 		   // we are checking to see if the user trying to login already exists

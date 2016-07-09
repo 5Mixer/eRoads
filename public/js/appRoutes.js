@@ -1,29 +1,80 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('appRoutes', ['AccountService']).config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
 
-   $routeProvider
+    $stateProvider.state('home',{
+        url:'/',
+        controller: function($scope,$state,Account) {
+            if (Account.isLoggedIn()){
+                $state.go('user.home');
+            }else{
+                $state.go('anon.home');
+            }
+        }
+    })
+
+   $stateProvider
+        .state('anon',{
+            abstract:true,
+            template:"<ui-view/>",
+            data: {
+                secure: false
+            }
+        })
+        .state('anon.home', {
+            templateUrl: '/landing.html'
+        })
+        .state('anon.login', {
+            url: '/login/',
+            templateUrl: '/login.html',
+            controller: 'LoginController'
+        })
+        .state('anon.signup', {
+            url: '/signup/',
+            templateUrl: 'signup.html',
+            controller: 'SignUpController'
+        });
+
+    $stateProvider
+        .state('user', {
+            abstract: true,
+            template: "<ui-view/>",
+            data: {
+                secure: true
+            }
+        })
+        .state('user.home', {
+            templateUrl: '/loggedIn.html'
+        })
+        .state('user.log', {
+            url:'/log',
+            templateUrl:"/log.html"
+        });
 
 	   // home page
-	   .when('/', {
-		   templateUrl: '/landing.html',
-		   controller: 'MainController'
-	   })
+	//    .when('/', {
+	// 	   templateUrl: '/landing.html',
+	// 	   controller: 'MainController',
+    //        secure:false
+	//    })
+       //
+       //
+	//    .when('/log', {
+	// 	   templateUrl: '/log.html',
+	// 	   controller: 'LogController',
+    //        secure:true
+	//    })
+       //
+    //    .when('/signup', {
+    //        templateUrl: '/signup.html',
+    //        controller: 'SignUpController',
+    //        secure:false
+    //    })
+       //
+    //    .when('/login', {
+    //        templateUrl: '/login.html',
+    //        controller: 'LoginController',
+    //        secure:false
+    //    });
 
-	   .when('/log', {
-		   templateUrl: '/log.html',
-		   controller: 'LogController'
-	   })
+   $locationProvider.html5Mode(true);
 
-       .when('/signup', {
-           templateUrl: '/signup.html',
-           controller: 'SignUpController'
-       })
-
-       .when('/login', {
-           templateUrl: '/login.html',
-           controller: 'LoginController'
-       })
-       ;
-
-   //$locationProvider.html5Mode(true);
-
-}]);
+}])

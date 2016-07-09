@@ -14,10 +14,14 @@
 		<link rel="stylesheet" type="text/css" href="css/text.css">
 	</head>
 	<body>
-		<div class="grid">
+		<div class="grid" ng-controller="HomeController">
 			<div class="wideBlock">
 				<!-- <img src="img/Car.jpg"></img> -->
-				<div class="right title">Welcome Natasha</div>
+				<div class="right title">Welcome {{Name}}</div><br>
+
+				<button ng-click="logout()">
+				Log out
+				</button>
 			</div>
 			<div class="skinnyBlock left activate">
 				<div class="centre large">

@@ -1,1 +1,1 @@
-angular.module('eRoads', ['ngRoute', 'appRoutes', 'HomeCtrl', 'LogCtrl','SignUpCtrl','LoginCtrl', 'LogService','AccountService']);
+angular.module('eRoads', ['ui.router','ngCookies','appRoutes','AccountService', 'HomeCtrl', 'LogCtrl','SignUpCtrl','LoginCtrl', 'LogService']);

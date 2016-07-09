@@ -1,5 +1,5 @@
-angular.module('HomeCtrl', []).controller('MainController', function($scope) {
-
-    $scope.tagline = 'To the moon and back!';
+angular.module('HomeCtrl', ['AccountService']).controller('HomeController', function($scope,Account) {
+    $scope.Name = Account.user.email;
+    $scope.logout = Account.logout;
 
 });

@@ -18,17 +18,17 @@ module.exports = function (app,passport) {
 
 
 	//This is called generally by a signup form.
-	app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/', // redirect to the home
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+	app.post('/signup',passport.authenticate('local-signup'),function(req,res){
+		console.log("/signup post");
+		if (req.user == undefined) next("err");
+		res.json(200, { "secure": true, "email": req.user.email});
+	});
 
-	app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/', // redirect to the home
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+	app.post('/login', passport.authenticate('local-login'),function(req,res){
+		console.log("/login post");
+		if (req.user == undefined) next("err");
+		res.json(200, { "secure": true, "email": req.user.email});
+	});
 
 
 	app.get('/logout', function(req, res) {
@@ -36,14 +36,14 @@ module.exports = function (app,passport) {
 		res.redirect('/');
 	});
 
-
-	app.get("/log",isLoggedIn, function(req, res) {
-		res.redirect('/#/log');
-	});
-
-	app.get("/login",isLoggedIn, function(req, res) {
-		res.redirect('/#/login');
-	});
+	//
+	// app.get("/log",isLoggedIn, function(req, res) {
+	// 	res.redirect('/#/log');
+	// });
+	//
+	// app.get("/login",isLoggedIn, function(req, res) {
+	// 	res.redirect('/#/login');
+	// });
 
 	// app.get("/signup",isLoggedIn, function(req, res) {
 	// 	res.redirect('/#/signup');
@@ -58,18 +58,39 @@ module.exports = function (app,passport) {
 	// 	res.sendfile('./public/trip.html');
 	// });
 
+	//This is the part of the app the used to work when the client was not a
+	//single page application. Now, this is useless, because the client itself
+	//should load both the logged in and public view, just only display the logged in
+	//view when angular knows it is ready. Perhaps this could return a cookie with
+	//login/auth status.
+	// app.get('/',function(req,res){
+	// 	if (req.isAuthenticated()){
+	// 		res.sendfile('./public/loggedIn.html');
+	// 	}else{
+	// 		res.sendfile('./public/landing.html');
+	// 	}
+	// });
+	//
+	// //Point any unknown requests to the home page.
+	// app.get('*', function(req, res) {
+	// 	res.redirect('/');
+	// });
 
-	app.get('/',function(req,res){
-		if (req.isAuthenticated()){
-			res.sendfile('./public/loggedIn.html');
-		}else{
-			res.sendfile('./public/landing.html');
-		}
-	});
+	app.get('/*', function(req, res){
+	    // var secure = false, username = '';
+	    // if(req.user) {
+	    //     secure = req.user.secure;
+	    //     email = req.user.email;
+		//
+		// 	res.cookie('user', JSON.stringify({
+		//         'email': email,
+		//         'secure': secure
+		//     }));
+	    // }
 
-	//Point any unknown requests to the home page.
-	app.get('*', function(req, res) {
-		res.redirect('/');
+
+
+	    res.sendfile('./public/index.html');
 	});
 
 
