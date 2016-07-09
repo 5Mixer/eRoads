@@ -9,7 +9,7 @@ angular.module('AccountService', ['ngCookies']).factory('Account', ['$state','$h
         user: currentUser,
 
         isLoggedIn : function (){
-            return $cookies.getObject('user').secure;
+            return currentUser.secure;
         },
         logout: function(success, error) {
             this.user = {
@@ -49,7 +49,7 @@ angular.module('AccountService', ['ngCookies']).factory('Account', ['$state','$h
 
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-    
+
         if (toState.data == undefined){
             console.log("Initial page load/No Secuirity specification.");
             return;
