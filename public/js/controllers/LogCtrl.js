@@ -1,5 +1,8 @@
 angular.module('LogCtrl', []).controller('LogController', function($scope,$rootScope) {
 
+    $rootScope.bodyClass="autumn";
+
+
     $scope.trips = [];
 
     var totalTime = 0;

@@ -1,72 +1,65 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>New Trip</title>
+<div class="grid" ng-controller="TripController">
+	<div class="delicate middleColumn">
+		<div class="title">New trip</div>
+
+		<div class="body">
+			<b>Great! You're just a few details away from starting.</b>
+			<br/>(You can change these details later.)<br/><br/>
 
 
-		<link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,500' rel='stylesheet' type='text/css'>
-		<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+			What is your odometer reading currently? <br/>
+			<input numberonly ng-model="odometer"><br><br/>
 
-		<link rel="stylesheet" type="text/css" href="css/grids.css">
-		<link rel="stylesheet" type="text/css" href="css/body.css">
-		<link rel="stylesheet" type="text/css" href="css/theme.css">
-		<link rel="stylesheet" type="text/css" href="css/text.css">
-		<link rel="stylesheet" type="text/css" href="css/form.css">
+			<b>Just a few more details</b> <br/>
 
-	</head>
-	<body class="seaweed">
-		<div>
-			<div class="delicate middleColumn">
-				<div class="title">New trip</div>
+			<label>Traffic</label>
+			<select>
+				<option value="light">Light</option>
+				<option value="moderate">Moderate</option>
+				<option value="heavy">Heavy</option>
+			</select><br>
 
-				<div class="body">
-					<b>Great! You're just a few details away from starting.</b>
-					<br/>(You can change these details later.)<br/><br/>
-
-
-					What is your odometer reading currently? <br/>
-					<input type="number" name="Odometer"><br><br/>
-
-					<b>Just a few more details</b> <br/>
+			<label>Light</label>
+			<select>
+				<option value="day">Day</option>
+				<option value="dawn">Dawn/Dusk</option>
+				<option value="night">Night</option>
+			</select><br><br>
 
 
-					<input class="css-checkbox" id="checkbox1" type="checkbox">
-					<label class="css-label" for="checkbox1">Parking</label><br>
+			<input class="css-checkbox" id="checkbox1" type="checkbox">
+			<label class="css-label" for="checkbox1">Parking</label><br>
 
-					<input class="css-checkbox" id="checkbox2" type="checkbox">
-					<label class="css-label" for="checkbox2">Wet conditions</label><br>
+			<input class="css-checkbox" id="checkbox2" type="checkbox">
+			<label class="css-label" for="checkbox2">Wet weather</label><br>
 
-					<input class="css-checkbox" id="checkbox3" type="checkbox">
-					<label class="css-label" for="checkbox3">Local streets</label><br>
+			<input class="css-checkbox" id="checkbox3" type="checkbox">
+			<label class="css-label" for="checkbox3">Local streets</label><br>
 
-					<input class="css-checkbox" id="checkbox4" type="checkbox">
-					<label class="css-label" for="checkbox4">Main Road</label><br>
+			<input class="css-checkbox" id="checkbox4" type="checkbox">
+			<label class="css-label" for="checkbox4">Main Road</label><br>
 
-					<input class="css-checkbox" id="checkbox5" type="checkbox">
-					<label class="css-label" for="checkbox5">Inner City</label><br>
+			<input class="css-checkbox" id="checkbox5" type="checkbox">
+			<label class="css-label" for="checkbox5">Inner City</label><br>
 
-					<input class="css-checkbox" id="checkbox6" type="checkbox">
-					<label class="css-label" for="checkbox6">Freeway</label><br>
+			<input class="css-checkbox" id="checkbox6" type="checkbox">
+			<label class="css-label" for="checkbox6">Freeway</label><br>
 
-					<input class="css-checkbox" id="checkbox7" type="checkbox">
-					<label class="css-label" for="checkbox7">Rural Highway</label><br>
+			<input class="css-checkbox" id="checkbox7" type="checkbox">
+			<label class="css-label" for="checkbox7">Rural Highway</label><br>
 
-					<input class="css-checkbox" id="checkbox8" type="checkbox">
-					<label class="css-label" for="checkbox8">Other rural streets</label><br>
+			<input class="css-checkbox" id="checkbox8" type="checkbox">
+			<label class="css-label" for="checkbox8">Other rural streets</label><br>
 
-					<input class="css-checkbox" id="checkbox9" type="checkbox">
-					<label class="css-label" for="checkbox9">Gravel roads</label><br>
+			<input class="css-checkbox" id="checkbox9" type="checkbox">
+			<label class="css-label" for="checkbox9">Gravel roads</label><br>
 
-					<br><br>
+			<br><br>
 
-					What is the cars registration? <input type="text" name="Odometer"><br/>
-					Who is the supervising driver? <br/>
+			What is the cars registration? <input type="text" name="Odometer"><br/>
+			Who is the supervising driver? <input type="text" name="Odometer"><br/><br/>
 
-					<button name="fname">Start!</button><br>
-				</div>
-			</div>
+			<button name="fname">Start!</button><br>
 		</div>
-	</body>
-</html>
+	</div>
+</div>

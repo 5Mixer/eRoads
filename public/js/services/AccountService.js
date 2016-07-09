@@ -9,7 +9,12 @@ angular.module('AccountService', ['ngCookies']).factory('Account', ['$state','$h
         user: currentUser,
 
         getAccount: function (){
-            return ($cookies.getObject('user') != undefined) ? $cookies.getObject('user') : { email: '', secure: false };
+            console.log("Got account");
+            if ($cookies.getObject('user') != undefined){
+                return $cookies.getObject('user')
+            }else{
+                return { email: '', secure: false };
+            }
         },
 
         isLoggedIn : function (){
