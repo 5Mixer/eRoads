@@ -1,6 +1,6 @@
 angular.module('AccountService', ['ngCookies']).factory('Account', ['$state','$http','$rootScope','$cookies', function($state,$http, $rootScope, $cookies) {
 
-    currentUser = $cookies.getObject('user') || { username: '', secure: false };
+    currentUser = $cookies.getObject('user') || { email: '', secure: false };
 
     var cookieExpireDate = new Date();
     cookieExpireDate.setDate(cookieExpireDate.getDate() + 1);
@@ -9,7 +9,7 @@ angular.module('AccountService', ['ngCookies']).factory('Account', ['$state','$h
         user: currentUser,
 
         getAccount: function (){
-            return ($cookies.getObject('user') != undefined) ? $cookies.getObject('user') : { username: '', secure: false };
+            return ($cookies.getObject('user') != undefined) ? $cookies.getObject('user') : { email: '', secure: false };
         },
 
         isLoggedIn : function (){
