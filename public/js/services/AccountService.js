@@ -8,10 +8,15 @@ angular.module('AccountService', ['ngCookies']).factory('Account', ['$state','$h
     return {
         user: currentUser,
 
+        getAccount: function (){
+            return ($cookies.getObject('user') != undefined) ? $cookies.getObject('user') : { username: '', secure: false };
+        },
+
         isLoggedIn : function (){
             return ($cookies.getObject('user') != undefined) ? $cookies.getObject('user').secure : false;
         },
         logout: function(success, error) {
+            $cookies.remove('user');
             this.user = {
                 email: '',
                 secure:false
