@@ -1,7 +1,28 @@
-angular.module('TripCtrl',['AccountService','LogService']).controller('TripController', function($scope, $rootScope,Account){
+angular.module('TripCtrl',['AccountService','LogService']).controller('TripController', function($scope, $rootScope,Account,Log){
 
 	$rootScope.bodyClass="autumn";
 
+	$scope.trip = {
+		odometer:undefined,
+		traffic:undefined,
+		light:undefined,
+		parking: false,
+		wet: false,
+		localStreets: false,
+		mainRoads: false,
+		innerCity: false,
+		freeway: false,
+		ruralHighway: false,
+		ruralStreets: false,
+		gravel:false,
+		registration: "",
+		supervisor:""
+	}
+
+	$scope.start = function () {
+		console.log($scope.trip);
+		Log.createTrip($scope.trip);
+	}
 
 })
 
@@ -11,7 +32,6 @@ angular.module('TripCtrl',['AccountService','LogService']).controller('TripContr
      link: function(scope, element, attrs, modelCtrl) {
 
        modelCtrl.$parsers.push(function (inputValue) {
-		   console.log("smelly fart" + inputValue)
 
 			var transformedInput = myString = inputValue.replace(/\D/g,'');
 

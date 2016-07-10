@@ -8,58 +8,59 @@
 
 
 			What is your odometer reading currently? <br/>
-			<input numberonly ng-model="odometer"><br><br/>
+			<input numberonly ng-model="trip.odometer"><br><br/>
 
 			<b>Just a few more details</b> <br/>
 
 			<label>Traffic</label>
-			<select>
+			<select ng-model="trip.traffic">
 				<option value="light">Light</option>
 				<option value="moderate">Moderate</option>
 				<option value="heavy">Heavy</option>
 			</select><br>
 
 			<label>Light</label>
-			<select>
+			<select ng-model="trip.light">
 				<option value="day">Day</option>
 				<option value="dawn">Dawn/Dusk</option>
 				<option value="night">Night</option>
 			</select><br><br>
 
 
-			<input class="css-checkbox" id="checkbox1" type="checkbox">
+			<input class="css-checkbox" id="checkbox1" type="checkbox" ng-model="trip.parking">
 			<label class="css-label" for="checkbox1">Parking</label><br>
 
-			<input class="css-checkbox" id="checkbox2" type="checkbox">
+			<input class="css-checkbox" id="checkbox2" type="checkbox" ng-model="trip.wet">
 			<label class="css-label" for="checkbox2">Wet weather</label><br>
 
-			<input class="css-checkbox" id="checkbox3" type="checkbox">
+			<input class="css-checkbox" id="checkbox3" type="checkbox" ng-model="trip.localStreets">
 			<label class="css-label" for="checkbox3">Local streets</label><br>
 
-			<input class="css-checkbox" id="checkbox4" type="checkbox">
+			<input class="css-checkbox" id="checkbox4" type="checkbox" ng-model="trip.mainRoads">
 			<label class="css-label" for="checkbox4">Main Road</label><br>
 
-			<input class="css-checkbox" id="checkbox5" type="checkbox">
+			<input class="css-checkbox" id="checkbox5" type="checkbox" ng-model="trip.innerCity">
 			<label class="css-label" for="checkbox5">Inner City</label><br>
 
-			<input class="css-checkbox" id="checkbox6" type="checkbox">
+			<input class="css-checkbox" id="checkbox6" type="checkbox" ng-model="trip.freeway">
 			<label class="css-label" for="checkbox6">Freeway</label><br>
 
-			<input class="css-checkbox" id="checkbox7" type="checkbox">
+			<input class="css-checkbox" id="checkbox7" type="checkbox" ng-model="trip.ruralHighway">
 			<label class="css-label" for="checkbox7">Rural Highway</label><br>
 
-			<input class="css-checkbox" id="checkbox8" type="checkbox">
+			<input class="css-checkbox" id="checkbox8" type="checkbox" ng-model="trip.ruralStreets">
 			<label class="css-label" for="checkbox8">Other rural streets</label><br>
 
-			<input class="css-checkbox" id="checkbox9" type="checkbox">
+			<input class="css-checkbox" id="checkbox9" type="checkbox" ng-model="trip.gravel">
 			<label class="css-label" for="checkbox9">Gravel roads</label><br>
 
 			<br><br>
 
-			What is the cars registration? <input type="text" name="Odometer"><br/>
-			Who is the supervising driver? <input type="text" name="Odometer"><br/><br/>
+			What is the cars registration? <input type="text" name="Odometer" ng-model="trip.registration"><br/>
+			Who is the supervising driver? <input type="text" name="Odometer" ng-model="trip.supervisor"><br/><br/>
 
-			<button name="fname">Start!</button><br>
+			<button type="start" ng-click="start()">Login</button>
+			<br>
 		</div>
 	</div>
 </div>

@@ -1,23 +1,44 @@
 //Get the trip model
 
 var Trip = require('./models/trip.js');
+var User = require('./models/user.js');
 
 //Export a function that requires the app
 module.exports = function (app,passport) {
+
 	//Handle different routes.
-
 	app.get('/api/trips', isLoggedIn, function(req,res){
-		Trip.find(function(error, trips){
-			//Return all trips, or any thrown error.
-			if (error)
-				res.send(error);
+		User.findOne({ 'email' :  req.user.email }, function(err, user) {
+			if (user){
+				res.json(user.trips);
+			}else{
+				//Authenticated user is not in the db? wtf?
+				console.log(err);
+			}
+		});
+	});
 
-			res.json(trips);
+	app.post('/api/trips',isLoggedIn, function(req,res) {
+		console.log("Trip posted");
+		console.log(req.body);
+		User.findOne({ 'email' :  req.user.email }, function(err, user) {
+			if (err){
+				return done(err);
+			}
+			if (user){
+				//Do validation of trip data. Putting req.body in is naive.
+				user.trips.push(new Trip(req.body));
+				//console.log(user.trips);
+				user.save(function (err){
+					res.send("Failed to store trip data - was form complete?");
+				});
+			}else{
+				return done("No such user is registered");
+			}
 		})
 	});
 
-
-	//This is called generally by a signup form.
+	//Auth routes
 	app.post('/signup',passport.authenticate('local-signup'),function(req,res){
 		console.log("/signup post");
 		if (req.user == undefined) next("err");
@@ -36,45 +57,6 @@ module.exports = function (app,passport) {
 		res.redirect('/');
 	});
 
-	//
-	// app.get("/log",isLoggedIn, function(req, res) {
-	// 	res.redirect('/#/log');
-	// });
-	//
-	// app.get("/login",isLoggedIn, function(req, res) {
-	// 	res.redirect('/#/login');
-	// });
-
-	// app.get("/signup",isLoggedIn, function(req, res) {
-	// 	res.redirect('/#/signup');
-	// });
-	// app.get("/signup", function(req, res) {
-	// 	res.sendfile('./public/signup.html');
-	// });
-	// app.get("/login", function(req, res) {
-	// 	res.sendfile('./public/login.html');
-	// });
-	// app.get("/trip",isLoggedIn, function(req, res) {
-	// 	res.sendfile('./public/trip.html');
-	// });
-
-	//This is the part of the app the used to work when the client was not a
-	//single page application. Now, this is useless, because the client itself
-	//should load both the logged in and public view, just only display the logged in
-	//view when angular knows it is ready. Perhaps this could return a cookie with
-	//login/auth status.
-	// app.get('/',function(req,res){
-	// 	if (req.isAuthenticated()){
-	// 		res.sendfile('./public/loggedIn.html');
-	// 	}else{
-	// 		res.sendfile('./public/landing.html');
-	// 	}
-	// });
-	//
-	// //Point any unknown requests to the home page.
-	// app.get('*', function(req, res) {
-	// 	res.redirect('/');
-	// });
 
 	app.get('/*', function(req, res){
 	    // var secure = false, username = '';
@@ -87,7 +69,6 @@ module.exports = function (app,passport) {
 		//         'secure': secure
 		//     }));
 	    // }
-
 
 
 	    res.sendfile('./public/index.html');

@@ -1,12 +1,14 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+var Trip = require('./trip.js');
 
 var userSchema = mongoose.Schema({
 	email: String,
 	name: String,
 	password:String,
-	license:Number
-})
+	license:Number,
+	trips: [Trip.schema]
+});
 
 //Methods for working with users.
 // generating a hash

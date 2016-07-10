@@ -37,11 +37,13 @@ app.use(cookieParser() );
 // HTML should only be viewed through other routes.
 app.use(express.static(__dirname + '/public/'));
 
-app.use(flash());
-
 app.use(session({ secret: 'supersecretsaucemakescryptostronger' })); // session secret
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session({
+                    cookie: { maxAge: 60000 },
+                    rolling: true,
+                    resave: true,
+                    saveUninitialized: false})); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ==================================================
