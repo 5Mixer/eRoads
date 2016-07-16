@@ -2,7 +2,7 @@ angular.module('LogService', []).factory('Log', ['$http', function($http) {
     return {
         // call to get all nerds
         getTrips : function() {
-            return $http.get('/api/trips');
+            return $http.get('/api/trips'); //Return promise.
         },
 
         // call to POST and create a new log

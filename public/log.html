@@ -34,43 +34,22 @@
 				<td>{{ trip.endTime}}</td>
 				<td>{{ trip.duration}}</td>
 				<td>{{ trip.totalTime}}</td>
-				<td>{{ trip.odometerStart}}</td>
+				<td>{{ trip.odometer}}</td>
 				<td>{{ trip.odometerEnd}}</td>
-				<td>{{ trip.regNumber }}</td>
+				<td>{{ trip.registration }}</td>
 				<td><span ng-if="trip.parking"> ✔ </span></td>
 				<td><span ng-if="trip.traffic"> ✔ </span></td>
-				<td><span ng-if="trip.weather"> ✔ </span></td>
-				<td><span ng-if="trip.local"> ✔ </span></td>
-				<td><span ng-if="trip.main"> ✔ </span></td>
+				<td><span ng-if="trip.wet"> ✔ </span></td>
+				<td><span ng-if="trip.localStreets"> ✔ </span></td>
+				<td><span ng-if="trip.mainRoads"> ✔ </span></td>
 				<td><span ng-if="trip.innerCity"> ✔ </span></td>
 				<td><span ng-if="trip.freeway"> ✔ </span></td>
 				<td><span ng-if="trip.ruralHighway"> ✔ </span></td>
 				<td><span ng-if="trip.gravel"> ✔ </span></td>
-				<td><span ng-if="trip.lightConditions"> ✔ </span></td>
+				<td><span ng-if="trip.light"> ✔ </span></td>
 				<td>{{ trip.supervisorsLicense}}</td>
 			</tr>
 
-			<tr>
-				<td>4/Jan/2016</td>
-				<td>5:24 PM</td>
-				<td>6:05 PM</td>
-				<td>0:41</td>
-				<td>73:45</td>
-				<td>117238</td>
-				<td>117260</td>
-				<td>ZUL271</td>
-				<td> ✔ </td>
-				<td> ✔ </td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td> ✔ </td>
-				<td> ✔ </td>
-				<td></td>
-				<td> ✔ </td>
-				<td>Night</td>
-				<td>033729409</td>
-			</tr>
 		</table>
 	</div>
 

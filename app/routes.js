@@ -27,10 +27,12 @@ module.exports = function (app,passport) {
 			}
 			if (user){
 				//Do validation of trip data. Putting req.body in is naive.
-				user.trips.push(new Trip(req.body));
+				//user.trips.push(new Trip(req.body));
+				user.trips.push(req.body);
 				//console.log(user.trips);
 				user.save(function (err){
-					res.send("Failed to store trip data - was form complete?");
+					console.log(err);
+					res.send("Failed to store trip data - was form complete?"+err);
 				});
 			}else{
 				return done("No such user is registered");

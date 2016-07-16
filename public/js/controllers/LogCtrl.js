@@ -2,7 +2,16 @@ angular.module('LogCtrl', ['AccountService','LogService']).controller('LogContro
 
     $rootScope.bodyClass="autumn";
 
-    $scope.trips = Log.getTrips();
+    Log.getTrips().then(function(response){
+        $scope.trips = response.data;
+
+        console.log($scope.trips);
+    },function (err){
+        console.log(err);
+        $scope.trips = {};
+
+        console.log($scope.trips);
+    });
 
     // $scope.trips = [];
     //
