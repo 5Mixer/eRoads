@@ -18,6 +18,41 @@
 	padding: 0;
 }
 
+/* Just a simple block style. Semi transperent box with padding, essentially*/
+.block {
+	box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+	padding: 20px;
+	background-color: rgba(255,255,255, 0.32);
+	/*width: 50%;*/
+	min-height: 200px;
+}
+
+.1-3 {
+    padding-left: 330px;
+}
+.2-3 {
+    left: 66.666%;
+}
+
+.parentCenter {
+  position: relative;
+}
+.childCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+
+    background-color: rgba(85, 78, 91, 0.76);
+    color: rgb(226, 226, 226)
+}
+.textCenter {
+    text-align: center;
+}
+
 
 .middleColumn {
 	width: 650px;
@@ -35,31 +70,23 @@
 	background: #43cea2; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to left, #43cea2 , #185a9d); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to left, #43cea2 , #185a9d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	height: 75%;
-
-    	/*background-image: url("..//img/Car.jpg");*/
+	height: 500px;
 
 	margin:0;
-	padding:0;
+	padding:30px;
+}
+
+.centerContent {
+
 }
 
 .skinnyBlock {
-	height: 25%;
+	height: calc(100% - 60px);
 	width: 50%;
-
-	/*Center content in these skinny boxes*/
-	display: -webkit-flexbox;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-	justify-content: center;
 
 	margin:0;
 	padding:0;
+    box-sizing: border-box;
 }
 
 .left {

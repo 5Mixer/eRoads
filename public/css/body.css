@@ -2,9 +2,48 @@ html, body{
 	margin:0;
 	padding:0;
 	height:100%;
-	
+
+}
+header {
+	z-index: 50;
+	width: 100%;
+	height: 40px;
+	background-color: rgba(0,0,0, 0.05);
+	position: absolute;
 }
 
-img{
+.padded {
+	margin: 20px;
+	padding: 30px;
+}
 
+.ghostButton {
+	position: relative;
+	font-family: Adam;
+	padding: 3px;
+	padding-bottom: 6px;
+	margin: 4px;
+	background-color: transparent;
+
+	border-radius: 7px 7px 7px 7px;
+	-moz-border-radius: 7px 7px 7px 7px;
+	-webkit-border-radius: 7px 7px 7px 7px;
+	border: 2px solid rgba(0,0,0, 0.65);
+	color: rgba(0,0,0, 0.75);
+}
+.ghostButton:hover {
+
+	border-radius: 7px 7px 7px 7px;
+	-moz-border-radius: 7px 7px 7px 7px;
+	-webkit-border-radius: 7px 7px 7px 7px;
+	border: 2px solid rgb(0,0,0);
+	color: rgba(0,0,0, 0.95);
+}
+
+#bg {
+	background-image: url("../img/City.jpg");
+	background-size:100%;
+	background-position: center;
+	background-size: cover;
+	height: 100%;
 }
