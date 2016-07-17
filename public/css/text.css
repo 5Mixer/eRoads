@@ -1,9 +1,22 @@
+@font-face {
+	font-family: Adam;
+	src: url("../fonts/ADAM.otf") format("opentype");
+}
+@font-face {
+	font-family: CODELight;
+	src: url("../fonts/CODE Light.otf") format("opentype");
+}
+
 .title{
-	font-family: 'Secular One', sans-serif;
+	/*font-family: 'Secular One', sans-serif;*/
+	font-family: CODELight;
 	font-weight: bold;
 	font-size: 5em;
 	padding: 40px;
 
+}
+.header {
+	font-family: Adam;
 }
 
 .body {
@@ -12,7 +25,8 @@
 }
 
 .large{
-	font-family: 'Secular One', sans-serif;
+	/*font-family: 'Secular One', sans-serif;*/
+	font-family: CODELight;
 	font-weight: bold;
 	font-size: 4em;
 }

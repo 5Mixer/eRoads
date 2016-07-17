@@ -1,0 +1,16 @@
+<div ng-controller="LogController">
+
+		<div class="title">Trip Overview</div>
+
+		<div class="body">
+			<div ng-repeat="trip in trips" class="card">
+				<span class="header">{{ trip.date }}</span>
+				<span>{{ trip.duration}}</span>
+				<span>{{ trip.totalTime}}</span>
+				<span>{{ trip.registration }}</span>
+				<span><span ng-if="trip.wet"> *Rain symbol* </span></span>
+				<span><span ng-if="trip.light"> *sun symbol* </span></span>
+				<span>{{ trip.supervisorsLicense}}</span>
+			</div>
+		</div>
+</div>

@@ -3,7 +3,18 @@ angular.module('LogCtrl', ['AccountService','LogService']).controller('LogContro
     $rootScope.bodyClass="autumn";
 
     Log.getTrips().then(function(response){
-        $scope.trips = response.data;
+        var data = response.data;
+        $scope.trips = data;
+
+        var arrayLength = data.length;
+        $scope.tripCount = arrayLength
+
+        //Pretty print all dates.
+        for (var i = 0; i < arrayLength; i++) {
+            data[i].date = moment(data[i].date).format("dddd, MMMM Do, h:mm a");
+
+        }
+
 
         console.log($scope.trips);
     },function (err){
@@ -13,12 +24,11 @@ angular.module('LogCtrl', ['AccountService','LogService']).controller('LogContro
         console.log($scope.trips);
     });
 
-    // $scope.trips = [];
-    //
-    //
-    // for (i = 0; i < 15; i++) {
-    //     $scope.trips[i] = generateDummyTrip();
-    // }
+    $scope.trips = [];
+
+    for (i = 0; i < 15; i++) {
+        //$scope.trips[i] = generateDummyTrip();
+    }
 
 	$rootScope.bodyClass="autumn";
 });

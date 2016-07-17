@@ -20,6 +20,11 @@ module.exports = function (app,passport) {
 
 	app.post('/api/trips',isLoggedIn, function(req,res) {
 		console.log("Trip posted");
+
+		var tripDetails = req.body;
+		//...do validation...
+		tripDetails.date = Date.now;
+
 		console.log(req.body);
 		User.findOne({ 'email' :  req.user.email }, function(err, user) {
 			if (err){

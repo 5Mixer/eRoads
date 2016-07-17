@@ -48,6 +48,10 @@ angular.module('appRoutes', ['AccountService']).config(['$stateProvider', '$loca
             url: '/trip',
             templateUrl: '/trip.html'
         })
+        .state('user.overview',{
+            url:'/overview',
+            templateUrl: '/overview.html'
+        })
         .state('user.log', {
             url:'/log',
             templateUrl:"/log.html"
