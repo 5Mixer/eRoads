@@ -1,19 +1,57 @@
+//Controller for accessing logged trips.
+
 angular.module('LogCtrl', ['AccountService','LogService']).controller('LogController', function($scope,$rootScope,Account,Log) {
 
-    $rootScope.bodyClass="autumn";
+    $rootScope.bodyClass="pristine";
 
     Log.getTrips().then(function(response){
         var data = response.data;
-        $scope.trips = data;
 
         var arrayLength = data.length;
         $scope.tripCount = arrayLength
 
-        //Pretty print all dates.
-        for (var i = 0; i < arrayLength; i++) {
-            data[i].date = moment(data[i].date).format("dddd, MMMM Do, h:mm a");
+        var runningCountDuration = 0;
 
+        for (var i = 0; i < arrayLength; i++) {
+            var tripComplete = data[i].endTime != undefined && data[i].odometerEnd != undefined;
+
+            //Capitalise rego's.
+            data[i].registration = data[i].registration.toUpperCase();
+
+            //Calculate distances etc.
+            if (tripComplete){
+                data[i].distance = data[i].odometerEnd - data[i].odometerStart;
+            }else{
+                data[i].distance = "Trip uncomplete";
+            }
+
+            var endTime = data[i].endTime;
+            var startTime = data[i].startTime;
+
+
+            if (tripComplete){
+                data[i].duration = humanizeDuration(moment(startTime).diff(moment(endTime)));
+            }else{
+                // data[i].duration = "Trip uncomplete";
+            }
+
+            if (tripComplete){
+                runningCountDuration += moment(startTime).diff(moment(endTime));
+                data[i].runningCountDuation = humanizeDuration(runningCountDuration, {units:['h','m']}) + " total";
+            }
+
+            //Pretty print all dates
+            data[i].startTime = moment(data[i].startTime).format("dddd, MMMM Do, h:mm a");
+            if (tripComplete){
+                data[i].endTime = moment(data[i].endTime).format("dddd, MMMM Do, h:mm a");
+            }else{
+                data[i].endTime = "Trip uncomplete";
+            }
         }
+
+        $scope.totalTime = humanizeDuration(runningCountDuration, {units:['h','m'],conjunction:' and '}) + " total";
+
+        $scope.trips = data;
 
 
         console.log($scope.trips);
@@ -26,11 +64,12 @@ angular.module('LogCtrl', ['AccountService','LogService']).controller('LogContro
 
     $scope.trips = [];
 
+    $scope.distance = "yay";
+
     for (i = 0; i < 15; i++) {
         //$scope.trips[i] = generateDummyTrip();
     }
 
-	$rootScope.bodyClass="autumn";
 });
 
 
@@ -59,7 +98,7 @@ function generateDummyTrip (){
 
     trip.odometerStart = odometer;
     trip.odometerEnd = odometer+chance.integer({min: 20, max: 60});;
-    odomoter = trip.odomoterEnd;
+    odometer = trip.odometerEnd;
 
     trip.regNumber = chance.pickone(["YYU 782", "XPR 119", "LNM 823"]);
 

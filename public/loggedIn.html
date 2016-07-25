@@ -1,38 +1,45 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>eRoads</title>
+<div class="headerSection" ng-controller="HomeController">
+	<a ng-click="logout()" class="white right ghostButton">Logout</a>
+	<span class="white header right" style="padding: 8px; header:6px;">Welcome {{Name}}</span>
+</div>
 
-		<link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,500' rel='stylesheet' type='text/css'>
-		<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
-		<link rel="stylesheet" type="text/css" href="css/grids.css">
-		<link rel="stylesheet" type="text/css" href="css/body.css">
-		<link rel="stylesheet" type="text/css" href="css/theme.css">
-		<link rel="stylesheet" type="text/css" href="css/text.css">
-	</head>
-	<body>
-		<div class="grid" ng-controller="HomeController">
-			<div class="wideBlock">
-				<!-- <img src="img/Car.jpg"></img> -->
-				<div class="right title">Welcome {{Name}}</div><br>
-
-				<button ng-click="logout()">
-				Log out
-				</button>
-			</div>
-			<div class="skinnyBlock left activate">
-				<div class="centre large">
-					<a href="trip">New Trip</a>
-				</div>
-			</div>
-			<div class="skinnyBlock right pleasent">
-				<div class="centre large">
-					<a href="log">View Logbook</a>
-				</div>
+<div class="grid" ng-controller="HomeController">
+	<div class="wideBlock" id="bg2">
+		<!-- <img src="img/Car.jpg"></img> -->
+		<div class="white title" style="padding-top:10px;">
+			<div ng-controller="LogController">
+				You have {{totalTime}} logged.
 			</div>
 		</div>
-	</body>
-</html>
+
+		<br>
+		<a class="white title big" ui-sref="user.log">View Logbook</a><br>
+
+	</div>
+
+</div>
+<div ng-controller="LogController">
+	<a class="card" ui-sref="user.trip">
+		<div class=" textCenter">
+			<div class="big header">+ New Trip</div>
+		</div>
+	</a>
+
+	<div ng-repeat="trip in trips" class="card">
+		<div class="leftCard pure-u-2-5">
+			<span class="big header">{{ trip.startTime }}</span><br/>
+			/
+			<span><span ng-if="trip.wet"> <img src="img/rain.svg" width="20" height="20"/> </span></span>
+			<span><span ng-if="trip.light"> ☀ </span></span>
+			/
+			<!-- <span class="medium rego">{{ trip.registration }}</span> -->
+		</div>
+		<div class="midCard pure-u-2-5">
+			<span class="big header" >{{ trip.distance }}</span><br/>
+			<span class="big header">{{ trip.duration}}</span>
+		</div>
+		<div class="rightCard">
+			<span class="big header">{{ trip.runningCountDuation}}</span>
+		</div>
+	</div>
+</div>
