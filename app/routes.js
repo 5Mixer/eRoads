@@ -23,7 +23,7 @@ module.exports = function (app,passport) {
 
 		var tripDetails = req.body;
 		//...do validation...
-		tripDetails.date = Date.now;
+		// tripDetails.startTime = Date.now;
 
 		console.log(req.body);
 		User.findOne({ 'email' :  req.user.email }, function(err, user) {

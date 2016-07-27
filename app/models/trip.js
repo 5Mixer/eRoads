@@ -3,8 +3,10 @@ var mongoose = require('mongoose');
 
 //Define the model/schema
 var tripSchema = mongoose.Schema({
-	date: { type: Date, default: new Date() },
-	odometer:{type:Number,required:true},
+	startTime: { type: Date, default: Date.now() },
+	endTime: { type: Date },
+	odometerStart:{type:Number,required:true},
+	odometerEnd:{type:Number,required:false},
 	traffic:{ type: String, required: true },
 	light:{ type: String, required: true },
 	parking: { type: Boolean, required: true },

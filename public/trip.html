@@ -7,10 +7,6 @@
 			<br/>(You can change these details later.)<br/><hr>
 
 
-			What is your current odometer reading? <br/>
-			<input numberonly ng-model="trip.odometer"><br><br/>
-
-
 			<label>Traffic</label>
 			<select ng-model="trip.traffic">
 				<option value="light">Light</option>
@@ -56,7 +52,44 @@
 			<br><br>
 
 			What is the cars registration? <input type="text" name="Odometer" ng-model="trip.registration"><br/>
-			Who is the supervising driver? <input type="text" name="Odometer" ng-model="trip.supervisor"><br/><br/>
+			Who is the supervising driver? <input type="text" name="Odometer" ng-model="trip.supervisor"><br/>
+
+			<hr>
+			If you haven't yet completed your trip, you can edit these points in later.<br/>
+			<br/>
+
+			<input type="checkbox" ng-model="checked" name="chklabl" id="chklabl" class="css-checkbox">
+			<label for="chklabl" class="css-label">
+				I've completed the trip.
+			</label>
+
+			<br/>
+			<br/>
+
+			<span ng-show="checked">
+				Great work! Just fill in the start and end time below.<br/>
+
+				What was your odometer when you started and ended? <br/>
+				<input numberonly ng-model="trip.odometerStart">
+				<input numberonly ng-model="trip.odometerEnd"><br><br/>
+
+				What time did your trip start and end? <br/>
+				<input time ng-model="trip.startTime" placeholder="Start time (eg. 5:00)">
+				<input time ng-model="trip.endTime" placeholder="End time (eg. 5:45)"><br><br/>
+
+			</span>
+
+			<span ng-hide="checked">Just edit this trips details when the trip is complete!<br/>
+
+				What is your odometer currently?<br/>
+				<input numberonly ng-model="trip.odometerStart"><br><br/>
+
+				What time are you starting? <br/>
+				<input time ng-model="trip.startTime" placeholder="Start time (eg. 5:00)"><br><br/>
+
+			</span>
+
+			<span ng-bind="end"></span><br/>
 
 			<button type="start" ng-click="start()">Go!</button>
 			<br>
