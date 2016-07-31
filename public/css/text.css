@@ -11,6 +11,10 @@
 	color: rgb(233, 233, 233);
 }
 
+.white {
+	color: rgb(233, 233, 233);
+}
+
 
 h1 {
 	/*font-family: 'Secular One', sans-serif;*/
@@ -38,6 +42,13 @@ h1 {
 }
 .header {
 	font-family: 'Varela Round', sans-serif;
+}
+
+.big {
+	font-size: 2.2em;
+}
+.medium {
+	font-size: 1.7em;
 }
 
 .big {
