@@ -18,6 +18,18 @@ module.exports = function (app,passport) {
 		});
 	});
 
+	app.get('/api/trips/:id', isLoggedIn, function(req,res){
+		User.findOne({ 'email' :  req.user.email }, function(err, user) {
+			if (user){
+				res.json(user.trips.id(req.params.id));
+
+			}else{
+				//Authenticated user is not in the db? wtf?
+				console.log(err);
+			}
+		});
+	});
+
 	app.post('/api/trips',isLoggedIn, function(req,res) {
 		console.log("Trip posted");
 
@@ -43,6 +55,72 @@ module.exports = function (app,passport) {
 				return done("No such user is registered");
 			}
 		})
+	});
+
+	app.post('/api/trips/:id',isLoggedIn, function(req,res) {
+		console.log("Trip updated");
+
+		var tripDetails = req.body;
+		//...do validation...
+
+		console.log(req.body);
+
+		User.findOneAndUpdate(
+			{ 'email' :  req.user.email, "trips._id" : req.body._id },
+			{
+				"$set" : {
+					"trips.$" : req.body
+				}
+			},
+			function(err,doc) {
+				console.log(err);
+				console.log(doc);
+			}
+		);
+
+
+		/*User.findOne({ 'email' :  req.user.email }, function(err, user) {
+			if (err){
+				return done(err);
+			}
+			if (user){
+				//Do validation of trip data. Putting req.body in is naive.
+				//user.trips.push(new Trip(req.body));
+				console.log(user);
+
+				user.trips.id(req.body._id) = req.body;
+				//Messiest code in the project.
+				//This needs to be replaced with code that updates the trips subdocument.
+
+				// for (trip in user.trips){
+				// 	if (trip._id == req.body._id){
+				// 		trip = req.body;
+				// 	}
+				// }
+
+
+				// user.findOneAndUpdate(
+				//     { "_id": req.body._id },
+				//     {
+				//         "$set": {
+				//             "Trip.$": req.body
+				//         }
+				//     },
+				//     function(err,doc) {
+				// 		console.log(err);
+				// 		console.log(doc);
+				//     }
+				// );
+
+				//console.log(user.trips);
+				user.save(function (err){
+					console.log(err);
+					res.send("Failed to store trip data - was form complete?\n"+err);
+				});
+			}else{
+				return done("No such user is registered");
+			}
+		})*/
 	});
 
 	//Auth routes

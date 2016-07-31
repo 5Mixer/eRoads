@@ -1,0 +1,48 @@
+<h1>Edit/view Trip</h1>
+<div class="body">
+	Traffic: {{expandedTrip.traffic}} <br/>
+	Light: {{expandedTrip.light}} <br/><br/>
+
+	<input class="css-checkbox" id="checkbox1" type="checkbox" ng-model="expandedTrip.parking">
+	<label class="css-label" for="checkbox1">Parking</label><br>
+
+	<input class="css-checkbox" id="checkbox2" type="checkbox" ng-model="expandedTrip.wet">
+	<label class="css-label" for="checkbox2">Wet weather</label><br>
+
+	<input class="css-checkbox" id="checkbox3" type="checkbox" ng-model="expandedTrip.localStreets">
+	<label class="css-label" for="checkbox3">Local streets</label><br>
+
+	<input class="css-checkbox" id="checkbox4" type="checkbox" ng-model="expandedTrip.mainRoads">
+	<label class="css-label" for="checkbox4">Main Road</label><br>
+
+	<input class="css-checkbox" id="checkbox5" type="checkbox" ng-model="expandedTrip.innerCity">
+	<label class="css-label" for="checkbox5">Inner City</label><br>
+
+	<input class="css-checkbox" id="checkbox6" type="checkbox" ng-model="expandedTrip.freeway">
+	<label class="css-label" for="checkbox6">Freeway</label><br>
+
+	<input class="css-checkbox" id="checkbox7" type="checkbox" ng-model="expandedTrip.ruralHighway">
+	<label class="css-label" for="checkbox7">Rural Highway</label><br>
+
+	<input class="css-checkbox" id="checkbox8" type="checkbox" ng-model="expandedTrip.ruralStreets">
+	<label class="css-label" for="checkbox8">Other rural streets</label><br>
+
+	<input class="css-checkbox" id="checkbox9" type="checkbox" ng-model="expandedTrip.gravel">
+	<label class="css-label" for="checkbox9">Gravel roads</label><br><br>
+
+	Car registration: <input type="text" name="Registation" ng-model="expandedTrip.registration"><br/>
+	Supervisor: <input type="text" name="Supervisor" ng-model="expandedTrip.supervisor"><br/>
+
+	<br/>
+	Odometer at the start and end of the trip <br/>
+	<input numberonly ng-model="expandedTrip.odometerStart">
+	<input numberonly ng-model="expandedTrip.odometerEnd"><br><br/>
+
+	Time of the start and end of the trip <br/>
+	<input time ng-model="expandedTrip.startTime" placeholder="Start time (eg. 5:00)">
+	<input time ng-model="expandedTrip.endTime" placeholder="End time (eg. 5:45)"><br><br/>
+
+	<button ng-click="update()">Update</button>
+
+
+</div>

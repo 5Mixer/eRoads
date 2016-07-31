@@ -3,7 +3,8 @@
 		<div class="title">Trip Overview</div>
 
 		<div class="body">
-			<div ng-repeat="trip in trips" class="card">
+			<div ng-repeat="trip in trips" class="card" ng-click="$parent.tripDetails(trip)">
+
 				<span class="header">{{ trip.startTime }}</span>
 				<span>{{ trip.duration}}</span>
 				<span>{{ trip.totalTime}}</span>

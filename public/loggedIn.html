@@ -8,24 +8,24 @@
 		<!-- <img src="img/Car.jpg"></img> -->
 		<div class="white title" style="padding-top:10px;">
 			<div ng-controller="LogController">
-				You have {{totalTime}} logged.
+				You have {{totalTime}} logged time.
 			</div>
 		</div>
 
 		<br>
-		<a class="white title big" ui-sref="user.log">View Logbook</a><br>
+		<a class="white title big" ui-sref="user.log">View Complete Logbook</a><br>
 
 	</div>
 
 </div>
 <div ng-controller="LogController">
 	<a class="card" ui-sref="user.trip">
-		<div class=" textCenter">
+		<div class="textCenter">
 			<div class="big header">+ New Trip</div>
 		</div>
 	</a>
 
-	<div ng-repeat="trip in trips" class="card">
+	<div ng-repeat="trip in trips" class="card" ng-click="tripDetails(trip)">
 		<div class="leftCard pure-u-2-5">
 			<span class="big header">{{ trip.startTime }}</span><br/>
 			/

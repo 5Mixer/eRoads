@@ -11,7 +11,8 @@
 	display: inline-block;
 
 	height: 110px;
-	background-color: #f57c7c;
+	/*background-color: #f57c7c;*/
+	background-color: #91da88;
 
 
 	-webkit-box-sizing: border-box;
@@ -29,7 +30,7 @@
 }
 
 .midCard {
-	background: rgb(172, 96, 96);
+	background: #a4e99b;
 	height: 100%;
 }
 .rightCard {

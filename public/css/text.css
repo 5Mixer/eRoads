@@ -6,10 +6,6 @@
 	font-family: CODELight;
 	src: url("../fonts/CODE Light.otf") format("opentype");
 }
-@font-face {
-	font-family: "Nevis";
-	src: url("../fonts/nevis.ttf") format("truetype");
-}
 
 .white {
 	color: rgb(233, 233, 233);
@@ -18,28 +14,30 @@
 
 h1 {
 	/*font-family: 'Secular One', sans-serif;*/
-	font-family: 'Nevis';
+	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
 	font-size: 3em;
 	padding: 0;
 	margin: 0;
+
 }
 
 .subtitle{
-	font-family: 'Nevis';
+	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
 	font-size: 3em;
+
 }
 
 .title{
 	/*font-family: 'Secular One', sans-serif;*/
-	font-family: CODELight;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
 	font-size: 5em;
 
 }
 .header {
-	font-family: Adam;
+	font-family: 'Varela Round', sans-serif;
 }
 
 .big {
@@ -50,7 +48,7 @@ h1 {
 }
 
 .body {
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Varela Round', sans-serif;
 	font-size: 1.5em;
 	word-break: normal;
 }

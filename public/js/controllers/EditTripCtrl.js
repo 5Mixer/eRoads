@@ -1,39 +1,31 @@
 // Controller for creating trips.
 
-angular.module('TripCtrl',['AccountService','TripService']).controller('TripController', function($scope, $rootScope,Account,Trip){
+angular.module('EditTripCtrl',['AccountService','TripService']).controller('EditTripController', function($scope, $rootScope,Account,Trip){
 
 	$rootScope.bodyClass="autumn";
 
-	var trip = {}; //'trip' is different to scope.trip as it doesn't have any pretty formatting, etc.
-	$scope.trip = {
-		odometer:undefined,
-		traffic:undefined,
-		light:undefined,
-		parking: false,
-		wet: false,
-		localStreets: false,
-		mainRoads: false,
-		innerCity: false,
-		freeway: false,
-		ruralHighway: false,
-		ruralStreets: false,
-		gravel:false,
-		registration: "",
-		supervisor:"",
-		startTime:undefined,
-		endTime:undefined
-	}
+	var trip = Trip.expandedTrip; //'trip' is different to scope.trip as it doesn't have any pretty formatting, etc.
+
+	console.log(Trip.expandedTrip)
+	$scope.expandedTrip = angular.copy(Trip.expandedTrip);
+
+	$scope.expandedTrip.startTime = dateToTime($scope.expandedTrip.startTime);
+	$scope.expandedTrip.endTime = dateToTime($scope.expandedTrip.endTime);
+
 
 	function getTrip (){
-		trip = angular.copy($scope.trip);
-		trip.startTime = stringToDate(trip.startTime);
-		trip.endTime = stringToDate(trip.endTime);
-		return trip;
+		var t = angular.copy($scope.expandedTrip);
+
+		t.startTime = stringToDate($scope.expandedTrip.startTime);
+		t.endTime = stringToDate($scope.expandedTrip.endTime);
+		t.odometerStart = parseInt($scope.expandedTrip.odometerStart);
+		t.odometerEnd = parseInt($scope.expandedTrip.odometerEnd);
+		return t;
 	}
 
 	function stringToDate (time){
 		var time = moment(time,'HH:mm')
-		var date = moment().minute(time.minute()).hour(time.hour());
+		var date = moment(trip.startTime).minute(time.minute()).hour(time.hour()).second(0);
 		// scope.end = date.toString();
 
 		if (time.isValid() == false){
@@ -42,15 +34,21 @@ angular.module('TripCtrl',['AccountService','TripService']).controller('TripCont
 			return date.toDate();
 		}
 	}
+	function dateToTime (date){
+		return moment(date).format('h:mm');
+	}
+	function dateToCal (date){
+		return moment(date).format('D/M/YYYY');
+	}
 
-	var time = moment($scope.trip.startTime,'HH:mm')
+	var time = moment($scope.expandedTrip.startTime,'HH:mm')
 	var date = moment().minute(time.minute()).hour(time.hour());
 	console.log(time.toString());
 	$scope.end = "";
 
-	$scope.start = function () {
+	$scope.update = function () {
 		console.log(getTrip());
-		Trip.createTrip(getTrip());
+		Trip.updateTrip(Trip.expandedTrip._id,getTrip());
 	}
 
 })

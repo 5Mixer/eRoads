@@ -1,10 +1,29 @@
 //Controller for accessing logged trips.
 
-angular.module('LogCtrl', ['AccountService','LogService']).controller('LogController', function($scope,$rootScope,Account,Log) {
+angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controller('LogController', function($scope,$rootScope,Account,Trip,ngDialog) {
 
     $rootScope.bodyClass="pristine";
+    $scope.expandedTrip = undefined;
 
-    Log.getTrips().then(function(response){
+    $scope.tripDetails = function (trip) {
+
+        Trip.getTrip(trip._id).then(function(response){
+            Trip.expandedTrip = response.data;
+
+            ngDialog.open({
+                template: 'tripDetails.html',
+                className: 'ngdialog-theme-default',
+                controller: 'EditTripController',
+                scope: $scope
+            });
+        });
+
+
+    };
+
+
+
+    Trip.getTrips().then(function(response){
         var data = response.data;
 
         var arrayLength = data.length;
@@ -20,7 +39,7 @@ angular.module('LogCtrl', ['AccountService','LogService']).controller('LogContro
 
             //Calculate distances etc.
             if (tripComplete){
-                data[i].distance = data[i].odometerEnd - data[i].odometerStart;
+                data[i].distance = data[i].odometerEnd - data[i].odometerStart + "km";
             }else{
                 data[i].distance = "Trip uncomplete";
             }
@@ -54,7 +73,7 @@ angular.module('LogCtrl', ['AccountService','LogService']).controller('LogContro
         $scope.trips = data;
 
 
-        console.log($scope.trips);
+        // console.log($scope.trips);
     },function (err){
         console.log(err);
         $scope.trips = {};
