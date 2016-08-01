@@ -24,17 +24,32 @@ angular.module('TripCtrl',['AccountService','TripService']).controller('TripCont
 		endTime:undefined
 	}
 
+	//Set default am/pm value to be the current times meridian
+	var shouldBeAmDefault = moment().format("A") == "AM";
+	$scope.startMeridian = shouldBeAmDefault; //true == am
+	$scope.endMeridian = shouldBeAmDefault; //true == am
+
+	$scope.toggleStartMeridian = function (){
+		$scope.startMeridian = !$scope.startMeridian;
+	}
+	$scope.toggleEndMeridian = function (){
+		$scope.endMeridian = !$scope.endMeridian;
+	}
+
 	function getTrip (){
 		trip = angular.copy($scope.trip);
-		trip.startTime = stringToDate(trip.startTime);
-		trip.endTime = stringToDate(trip.endTime);
+		trip.startTime = stringToDate(trip.startTime,$scope.startMeridian);
+		trip.endTime = stringToDate(trip.endTime,$scope.endMeridian);
 		return trip;
 	}
 
-	function stringToDate (time){
+	function stringToDate (time,am){
 		var time = moment(time,'HH:mm')
 		var date = moment().minute(time.minute()).hour(time.hour());
-		// scope.end = date.toString();
+
+		if (time.hour() < 12 && !am){
+			date.add(12,'h');
+		}
 
 		if (time.isValid() == false){
 			return undefined;

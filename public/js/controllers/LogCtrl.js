@@ -21,8 +21,6 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
 
     };
 
-
-
     Trip.getTrips().then(function(response){
         var data = response.data;
 
@@ -44,8 +42,10 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
                 data[i].distance = "Trip uncomplete";
             }
 
-            var endTime = data[i].endTime;
+            data[i].rawStartDate = data[i].startTime;
+
             var startTime = data[i].startTime;
+            var endTime = data[i].endTime;
 
 
             if (tripComplete){
@@ -56,7 +56,7 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
 
             if (tripComplete){
                 runningCountDuration += moment(startTime).diff(moment(endTime));
-                data[i].runningCountDuation = humanizeDuration(runningCountDuration, {units:['h','m']}) + " total";
+                data[i].runningCountDuation = humanizeDuration(runningCountDuration, {units:['h','m']});
             }
 
             //Pretty print all dates
@@ -68,7 +68,7 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
             }
         }
 
-        $scope.totalTime = humanizeDuration(runningCountDuration, {units:['h','m'],conjunction:' and '}) + " total";
+        $scope.totalTime = humanizeDuration(runningCountDuration, {units:['h','m'],conjunction:' and '});
 
         $scope.trips = data;
 
@@ -82,6 +82,11 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
     });
 
     $scope.trips = [];
+
+
+
+    $scope.$watch('trips', function(){
+    }, true);
 
     $scope.distance = "yay";
 

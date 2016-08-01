@@ -1,7 +1,21 @@
 <h1>Edit/view Trip</h1>
 <div class="body">
-	Traffic: {{expandedTrip.traffic}} <br/>
-	Light: {{expandedTrip.light}} <br/><br/>
+
+	<input ng-model="date"><br><br>
+
+	<label>Traffic:</label>
+	<select ng-model="expandedTrip.traffic">
+		<option value="light">Light</option>
+		<option value="moderate">Moderate</option>
+		<option value="heavy">Heavy</option>
+	</select><br>
+
+	<label>Light:</label>
+	<select ng-model="expandedTrip.light">
+		<option value="day">Day</option>
+		<option value="dawn">Dawn/Dusk</option>
+		<option value="night">Night</option>
+	</select><br><br>
 
 	<input class="css-checkbox" id="checkbox1" type="checkbox" ng-model="expandedTrip.parking">
 	<label class="css-label" for="checkbox1">Parking</label><br>
@@ -40,9 +54,14 @@
 
 	Time of the start and end of the trip <br/>
 	<input time ng-model="expandedTrip.startTime" placeholder="Start time (eg. 5:00)">
-	<input time ng-model="expandedTrip.endTime" placeholder="End time (eg. 5:45)"><br><br/>
+	<span class="timeOfDay" ng-click="toggleStartMeridian()">{{startMeridian ? "AM":"PM"}}</span><br>
+
+	<input time ng-model="expandedTrip.endTime" placeholder="End time (eg. 5:45)">
+	<span class="timeOfDay" ng-click="toggleEndMeridian()">{{endMeridian ? "AM":"PM"}}</span>
+
+	<br><br/>
 
 	<button ng-click="update()">Update</button>
-
+	<button ng-click="delete()" style="background-color: rgb(224, 70, 70);">Delete trip</button>
 
 </div>

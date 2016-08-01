@@ -49,7 +49,7 @@
 			<input class="css-checkbox" id="checkbox9" type="checkbox" ng-model="trip.gravel">
 			<label class="css-label" for="checkbox9">Gravel roads</label><br>
 
-			<br><br>
+			<br>
 
 			What is the cars registration? <input type="text" name="Registation" ng-model="trip.registration"><br/>
 			Who is the supervising driver? <input type="text" name="Supervisor" ng-model="trip.supervisor"><br/>
@@ -67,16 +67,17 @@
 			<br/>
 
 			<span ng-show="checked">
-				Great work! Just fill in the start and end time below.<br/>
 
 				What was your odometer when you started and ended? <br/>
-				<input numberonly ng-model="trip.odometerStart">
+				<input numberonly ng-model="trip.odometerStart"><br>
 				<input numberonly ng-model="trip.odometerEnd"><br><br/>
 
 				What time did your trip start and end? <br/>
-				<input time ng-model="trip.startTime" placeholder="Start time (eg. 5:00)">
-				<input time ng-model="trip.endTime" placeholder="End time (eg. 5:45)"><br><br/>
-
+				<input time class="time" ng-model="trip.startTime" placeholder="Start time (eg. 5:00)">
+				<span class="timeOfDay" ng-click="toggleStartMeridian()">{{startMeridian ? "AM":"PM"}}</span><br>
+				<input time class="time" ng-model="trip.endTime" placeholder="End time (eg. 5:45)">
+				<span class="timeOfDay" ng-click="toggleEndMeridian()">{{endMeridian ? "AM":"PM"}}</span>
+				<br><br/>
 			</span>
 
 			<span ng-hide="checked">Just edit this trips details when the trip is complete!<br/>
@@ -85,7 +86,9 @@
 				<input numberonly ng-model="trip.odometerStart"><br><br/>
 
 				What time are you starting? <br/>
-				<input time ng-model="trip.startTime" placeholder="Start time (eg. 5:00)"><br><br/>
+				<input time class="time" ng-model="trip.startTime" placeholder="Start time (eg. 5:00)">
+				<span class="timeOfDay" ng-click="toggleStartMeridian()">{{startMeridian ? "AM":"PM"}}</span>
+				<br><br/>
 
 			</span>
 

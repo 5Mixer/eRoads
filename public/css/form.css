@@ -20,9 +20,38 @@ label {
     height: 40px;
 }
 
+.time {
+    width: 240px;
+}
+
 input {
 	padding: 6px;
     box-sizing: border-box;
+}
+
+/*AM / PM*/
+.timeOfDay {
+    color: #767676;
+
+    padding: 6px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+
+    margin: 0px;
+    border: 1px solid #7A7A7A;
+    cursor: pointer;
+
+    /* Make non-selectable */
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+
+    /* No support for these yet */
+    -o-user-select: none;
+    user-select: none;
+}
+.timeOfDay:hover{
+    color: #111;
 }
 
 select {

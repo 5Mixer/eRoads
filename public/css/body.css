@@ -28,16 +28,17 @@ html, body{
 	border-radius: 7px 7px 7px 7px;
 	-moz-border-radius: 7px 7px 7px 7px;
 	-webkit-border-radius: 7px 7px 7px 7px;
-	border: 2px solid rgba(0,0,0, 0.65);
+	border: 2px solid rgba(255,255,255, 0.65);
 	color: rgba(0,0,0, 0.75);
+
+	cursor: pointer;
 }
 .ghostButton:hover {
 
 	border-radius: 7px 7px 7px 7px;
 	-moz-border-radius: 7px 7px 7px 7px;
 	-webkit-border-radius: 7px 7px 7px 7px;
-	border: 2px solid rgb(0,0,0);
-	color: rgba(0,0,0, 0.95);
+	border: 2px solid rgb(240,240,240);
 }
 
 #bg {
@@ -50,9 +51,9 @@ html, body{
 
 #bg2 {
 	background-image: linear-gradient(
-		 rgba(0, 0, 0, 0.7),
-		 rgba(0, 0, 0, 0.1)
-	   ),url("../img/11.jpg");
+		 rgba(0, 0, 0, 0.8),
+		 rgba(0, 0, 0, 0.3)
+	   ),url("../img/8.jpg");
 	background-size:100%;
 	background-position: center;
 	background-size: cover;

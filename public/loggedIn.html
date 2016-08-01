@@ -8,7 +8,7 @@
 		<!-- <img src="img/Car.jpg"></img> -->
 		<div class="white title" style="padding-top:10px;">
 			<div ng-controller="LogController">
-				You have {{totalTime}} logged time.
+				You have {{totalTime}} logged so far.
 			</div>
 		</div>
 
@@ -25,7 +25,8 @@
 		</div>
 	</a>
 
-	<div ng-repeat="trip in trips" class="card" ng-click="tripDetails(trip)">
+	<!-- ng-repeat="trip in trips | orderBy:'rawStartDate':true ... > -->
+	<div ng-repeat="trip in trips" class="card" ng-click="tripDetails(trip)" >
 		<div class="leftCard pure-u-2-5">
 			<span class="big header">{{ trip.startTime }}</span><br/>
 			/
@@ -39,7 +40,7 @@
 			<span class="big header">{{ trip.duration}}</span>
 		</div>
 		<div class="rightCard">
-			<span class="big header">{{ trip.runningCountDuation}}</span>
+			<span class="big header">{{ trip.runningCountDuation}} total</span>
 		</div>
 	</div>
 </div>
