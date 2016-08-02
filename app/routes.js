@@ -77,50 +77,37 @@ module.exports = function (app,passport) {
 				console.log(doc);
 			}
 		);
-
-
-		/*User.findOne({ 'email' :  req.user.email }, function(err, user) {
+		User.findOne({ 'email' :  req.user.email }, function(err, user) {
 			if (err){
 				return done(err);
 			}
 			if (user){
-				//Do validation of trip data. Putting req.body in is naive.
-				//user.trips.push(new Trip(req.body));
-				console.log(user);
-
-				user.trips.id(req.body._id) = req.body;
-				//Messiest code in the project.
-				//This needs to be replaced with code that updates the trips subdocument.
-
-				// for (trip in user.trips){
-				// 	if (trip._id == req.body._id){
-				// 		trip = req.body;
-				// 	}
-				// }
-
-
-				// user.findOneAndUpdate(
-				//     { "_id": req.body._id },
-				//     {
-				//         "$set": {
-				//             "Trip.$": req.body
-				//         }
-				//     },
-				//     function(err,doc) {
-				// 		console.log(err);
-				// 		console.log(doc);
-				//     }
-				// );
-
-				//console.log(user.trips);
 				user.save(function (err){
 					console.log(err);
-					res.send("Failed to store trip data - was form complete?\n"+err);
+					res.send("Failed to update trip data - was form complete?"+err);
 				});
 			}else{
 				return done("No such user is registered");
 			}
-		})*/
+		})
+	});
+
+	app.delete('/api/trips/:id',isLoggedIn, function(req,res){
+		console.log("Deleting trip "+req.params.id);
+		User.findOne({ 'email' :  req.user.email }, function(err, user) {
+			if (user){
+				user.trips.id(req.params.id).remove();
+
+				user.save(function (err) {
+					if (err) console.log(err);
+					//Success.
+				});
+
+			}else{
+				//Authenticated user is not in the db? wtf?
+				console.log(err);
+			}
+		});
 	});
 
 	//Auth routes

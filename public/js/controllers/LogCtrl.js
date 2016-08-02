@@ -21,65 +21,90 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
 
     };
 
-    Trip.getTrips().then(function(response){
-        var data = response.data;
+    function loadTrips (){
+        // $scope.trips = {};
+        Trip.getTrips().then(function(response){
+            console.log("DOWNLOADING TRIPS...");
+            var data = response.data;
 
-        var arrayLength = data.length;
-        $scope.tripCount = arrayLength
+            var arrayLength = data.length;
+            $scope.tripCount = arrayLength
 
-        var runningCountDuration = 0;
+            var runningCountDuration = 0;
 
-        for (var i = 0; i < arrayLength; i++) {
-            var tripComplete = data[i].endTime != undefined && data[i].odometerEnd != undefined;
+            for (var i = 0; i < arrayLength; i++) {
+                var tripComplete = data[i].endTime != undefined && data[i].odometerEnd != undefined;
 
-            //Capitalise rego's.
-            data[i].registration = data[i].registration.toUpperCase();
+                //Capitalise rego's.
+                data[i].registration = data[i].registration.toUpperCase();
 
-            //Calculate distances etc.
-            if (tripComplete){
-                data[i].distance = data[i].odometerEnd - data[i].odometerStart + "km";
-            }else{
-                data[i].distance = "Trip uncomplete";
+                //Calculate distances etc.
+                if (tripComplete){
+                    data[i].distance = data[i].odometerEnd - data[i].odometerStart + "km";
+                }else{
+                    data[i].distance = "Trip uncomplete";
+                }
+
+                data[i].rawStartDate = data[i].startTime;
+
+                var startTime = data[i].startTime;
+                var endTime = data[i].endTime;
+
+
+                if (tripComplete){
+                    data[i].duration = humanizeDuration(moment(startTime).diff(moment(endTime)));
+                }else{
+                    // data[i].duration = "Trip uncomplete";
+                }
+
+                if (tripComplete){
+                    runningCountDuration += moment(startTime).diff(moment(endTime));
+                    data[i].runningCountDuation = humanizeDuration(runningCountDuration, {units:['h','m']});
+                }
+
+                //Pretty print all dates
+                data[i].startTime = moment(data[i].startTime).format("dddd, MMMM Do, h:mm a");
+                if (tripComplete){
+                    data[i].endTime = moment(data[i].endTime).format("dddd, MMMM Do, h:mm a");
+                }else{
+                    data[i].endTime = "Trip uncomplete";
+                }
             }
 
-            data[i].rawStartDate = data[i].startTime;
+            $scope.totalTime = humanizeDuration(runningCountDuration, {units:['h','m'],conjunction:' and '});
 
-            var startTime = data[i].startTime;
-            var endTime = data[i].endTime;
+            $scope.trips = data;
 
 
-            if (tripComplete){
-                data[i].duration = humanizeDuration(moment(startTime).diff(moment(endTime)));
-            }else{
-                // data[i].duration = "Trip uncomplete";
-            }
+            // console.log($scope.trips);
+        },function (err){
+            console.log(err);
+            $scope.trips = {};
 
-            if (tripComplete){
-                runningCountDuration += moment(startTime).diff(moment(endTime));
-                data[i].runningCountDuation = humanizeDuration(runningCountDuration, {units:['h','m']});
-            }
+            console.log($scope.trips);
+        });
+    }
 
-            //Pretty print all dates
-            data[i].startTime = moment(data[i].startTime).format("dddd, MMMM Do, h:mm a");
-            if (tripComplete){
-                data[i].endTime = moment(data[i].endTime).format("dddd, MMMM Do, h:mm a");
-            }else{
-                data[i].endTime = "Trip uncomplete";
-            }
+    loadTrips();
+    $scope.update = loadTrips;
+
+
+    $scope.$watch(function (scope){
+        //Should the log be refreshed?
+        return Trip.needsRefreshing;
+    },function (newVal,oldVal,scope){
+        if (newVal == true){
+            //A refresh is required.
+            setTimeout(function () {
+                loadTrips();
+                Trip.needsRefreshing = false;
+            }, 150);
+
+            console.log("REFRESH!");
+
         }
+    })
 
-        $scope.totalTime = humanizeDuration(runningCountDuration, {units:['h','m'],conjunction:' and '});
-
-        $scope.trips = data;
-
-
-        // console.log($scope.trips);
-    },function (err){
-        console.log(err);
-        $scope.trips = {};
-
-        console.log($scope.trips);
-    });
 
     $scope.trips = [];
 
