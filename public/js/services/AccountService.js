@@ -1,6 +1,18 @@
 angular.module('AccountService', ['ngCookies']).factory('Account', ['$state','$http','$rootScope','$cookies', function($state,$http, $rootScope, $cookies) {
 
+    //This function doesn't rely on (potentially old) cookies, it just asks the server
+    //if this session is currently authorised, allowing for cases such as the server
+    //being restarted (and thus lost sessions)
+    function isLoggedInCheck (){
+        $http.get('/api/trips').then(function(response){
+            var data = response.data;
+            return data.secure;
+        })
+    }
+
     currentUser = $cookies.getObject('user') || { email: '', secure: false };
+
+
 
     var cookieExpireDate = new Date();
     cookieExpireDate.setDate(cookieExpireDate.getDate() + 1);

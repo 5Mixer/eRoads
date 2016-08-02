@@ -6,6 +6,14 @@ var User = require('./models/user.js');
 //Export a function that requires the app
 module.exports = function (app,passport) {
 
+	app.get('/api/account',function (req,res){
+		if (req.isAuthenticated()){
+			res.json(200, { "secure": true, "email": req.user.email});
+		}else{
+			res.json(401,{"secure":false, "email":""});
+		}
+	});
+
 	//Handle different routes.
 	app.get('/api/trips', isLoggedIn, function(req,res){
 		User.findOne({ 'email' :  req.user.email }, function(err, user) {
