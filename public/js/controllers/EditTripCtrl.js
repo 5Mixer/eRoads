@@ -68,7 +68,12 @@ angular.module('EditTripCtrl',['AccountService','TripService']).controller('Edit
 
 	$scope.delete = function (){
 		console.log("Deleting trip.");
-		Trip.deleteTrip(Trip.expandedTrip._id);
+		Trip.deleteTrip(Trip.expandedTrip._id).then(function(){
+
+			Trip.needsRefreshing = true;
+		});
+
+		$scope.closeThisDialog();
 	}
 
 	$scope.update = function () {

@@ -26,7 +26,7 @@
 	</a>
 
 	<!-- ng-repeat="trip in trips | orderBy:'rawStartDate':true ... > -->
-	<div ng-repeat="trip in trips" class="card" ng-click="tripDetails(trip)" >
+	<div ng-repeat="trip in trips | reverse" class="card" ng-click="tripDetails(trip)" >
 		<div class="leftCard pure-u-2-5">
 			<span class="big header">{{ trip.startTime }}</span><br/>
 

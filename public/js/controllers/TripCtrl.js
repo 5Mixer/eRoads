@@ -1,6 +1,6 @@
 // Controller for creating trips.
 
-angular.module('TripCtrl',['AccountService','TripService']).controller('TripController', function($scope, $rootScope,Account,Trip){
+angular.module('TripCtrl',['AccountService','TripService']).controller('TripController', function($scope, $rootScope,$state,Account,Trip){
 
 	$rootScope.bodyClass="autumn";
 
@@ -66,6 +66,7 @@ angular.module('TripCtrl',['AccountService','TripService']).controller('TripCont
 	$scope.start = function () {
 		console.log(getTrip());
 		Trip.createTrip(getTrip());
+		$state.go('user.home');
 	}
 
 })

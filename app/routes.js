@@ -96,7 +96,8 @@ module.exports = function (app,passport) {
 		console.log("Deleting trip "+req.params.id);
 		User.findOne({ 'email' :  req.user.email }, function(err, user) {
 			if (user){
-				user.trips.id(req.params.id).remove();
+				if (user.trips.id(req.params.id) != undefined)
+					user.trips.id(req.params.id).remove();
 
 				user.save(function (err) {
 					if (err) console.log(err);

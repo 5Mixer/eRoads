@@ -119,7 +119,11 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
         //$scope.trips[i] = generateDummyTrip();
     }
 
-});
+}).filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});;
 
 
 var totalTime = 0;
