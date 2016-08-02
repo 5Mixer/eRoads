@@ -29,11 +29,10 @@
 	<div ng-repeat="trip in trips" class="card" ng-click="tripDetails(trip)" >
 		<div class="leftCard pure-u-2-5">
 			<span class="big header">{{ trip.startTime }}</span><br/>
-			/
-			<span><span ng-if="trip.wet"> <img src="img/rain.svg" width="20" height="20"/> </span></span>
-			<span><span ng-if="trip.light"> ☀ </span></span>
-			/
-			<!-- <span class="medium rego">{{ trip.registration }}</span> -->
+
+			<span><span ng-if="trip.wet" class="body"> <img src="img/rain.svg" width="20" height="20"/> </span></span>
+			<span><span ng-if="trip.light" class="body"> ☀ </span></span>
+
 		</div>
 		<div class="midCard pure-u-2-5">
 			<span class="big header" >{{ trip.distance }}</span><br/>
