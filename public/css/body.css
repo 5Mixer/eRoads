@@ -12,6 +12,11 @@ html, body{
 	position: absolute;
 }
 
+#checkList {
+	position: relative;
+	top: -400px;
+}
+
 .padded {
 	margin: 20px;
 	padding: 30px;

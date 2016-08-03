@@ -10,7 +10,7 @@
 
 	display: inline-block;
 
-	height: 120px;
+	min-height: 120px;
 	/*background-color: #f57c7c;*/
 	background-color: #91da88;
 
@@ -35,7 +35,7 @@
 
 .midCard {
 	background: #a4e99b;
-	height: 100%;
+	min-height: 100%;
 }
 .rightCard {
 	float:right;

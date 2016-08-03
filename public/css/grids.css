@@ -55,9 +55,12 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+
     width: 50%;
 
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
     background-color: rgba(85, 78, 91, 0.76);
     color: rgb(226, 226, 226)
 }
@@ -82,7 +85,7 @@
 	background: #43cea2; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to left, #43cea2 , #185a9d); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to left, #43cea2 , #185a9d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	height: 500px;
+	min-height: 500px;
 
 	margin:0;
 	padding:30px;
