@@ -1,6 +1,6 @@
 //Controller for accessing logged trips.
 
-angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controller('LogController', function($scope,$rootScope,Account,Trip,ngDialog) {
+angular.module('LogCtrl', ['AccountService','TripService','ngDialog',"chart.js"]).controller('LogController', function($timeout,$scope,$rootScope,Account,Trip,ngDialog) {
 
     $rootScope.bodyClass="pristine";
     $scope.expandedTrip = undefined;
@@ -18,19 +18,29 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
             });
         });
 
-
     };
+
+    var runningCountDuration = 0;
+    var runningCountDurationDay = 0;
+    var runningCountDurationNight = 0;
 
     function loadTrips (){
         // $scope.trips = {};
+
+
         Trip.getTrips().then(function(response){
+
+            runningCountDuration = 0;
+            runningCountDurationDay = 0;
+            runningCountDurationNight = 0;
+
             console.log("DOWNLOADING TRIPS...");
             var data = response.data;
 
             var arrayLength = data.length;
             $scope.tripCount = arrayLength
 
-            var runningCountDuration = 0;
+
 
             for (var i = 0; i < arrayLength; i++) {
                 var tripComplete = data[i].endTime != undefined && data[i].odometerEnd != undefined;
@@ -58,7 +68,13 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
                 }
 
                 if (tripComplete){
+                    if (data[i].light == "night"){
+                        runningCountDurationNight += moment(startTime).diff(moment(endTime));
+                    }else{
+                        runningCountDurationDay += moment(startTime).diff(moment(endTime));
+                    }
                     runningCountDuration += moment(startTime).diff(moment(endTime));
+
                     data[i].runningCountDuation = humanizeDuration(runningCountDuration, {units:['h','m']});
                 }
 
@@ -74,6 +90,11 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
             $scope.totalTime = humanizeDuration(runningCountDuration, {units:['h','m'],conjunction:' and '});
 
             $scope.trips = data;
+
+            runningCountDurationDay = moment.duration(runningCountDurationDay).hours();
+            runningCountDurationNight = moment.duration(runningCountDurationNight).hours();
+
+            $scope.data = [-runningCountDurationDay,-runningCountDurationNight];
 
 
             // console.log($scope.trips);
@@ -108,12 +129,16 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
 
     $scope.trips = [];
 
-
-
     $scope.$watch('trips', function(){
     }, true);
 
-    $scope.distance = "yay";
+    $scope.distance = "";
+
+    $timeout(function(){
+
+    })
+    $scope.labels = ["Day hours","Night hours"];
+    $scope.colours = ["#dda62b","#534b53"];
 
     for (i = 0; i < 15; i++) {
         //$scope.trips[i] = generateDummyTrip();
@@ -123,7 +148,7 @@ angular.module('LogCtrl', ['AccountService','TripService','ngDialog']).controlle
   return function(items) {
     return items.slice().reverse();
   };
-});;
+});
 
 
 var totalTime = 0;

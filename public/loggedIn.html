@@ -4,16 +4,23 @@
 </div>
 
 <div class="grid" ng-controller="HomeController">
-	<div class="wideBlock" id="bg2">
+	<div class="clear wideBlock" id="bg2">
 		<!-- <img src="img/Car.jpg"></img> -->
-		<div class="white title" style="padding-top:10px;">
-			<div ng-controller="LogController">
+		<div ng-controller="LogController">
+			<div class="white title" style="padding-top:10px;">
 				You have {{totalTime}} logged so far.
+			</div>
+
+			<a class="white title big" ui-sref="user.log">View Complete Logbook</a><br>
+
+			<div id="timeGraph">
+				<canvas class="chart chart-pie"
+					chart-data="data" chart-labels="labels" chart-options="options" chart-colors="colours">
+				</canvas>
 			</div>
 		</div>
 
 		<br>
-		<a class="white title big" ui-sref="user.log">View Complete Logbook</a><br>
 
 	</div>
 
@@ -26,7 +33,7 @@
 	</a>
 
 	<!-- ng-repeat="trip in trips | orderBy:'rawStartDate':true ... > -->
-	<div ng-repeat="trip in trips | reverse" class="card" ng-click="tripDetails(trip)" >
+	<div ng-repeat="trip in trips | reverse" class="flex card" ng-click="tripDetails(trip)" >
 		<div class="leftCard pure-u-2-5">
 			<span class="big header">{{ trip.startTime }}</span><br/>
 
